@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.2 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkImage">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-missing-image</property>
+  </object>
+  <object class="GtkWindow" id="window">
+    <property name="width_request">670</property>
+    <property name="height_request">400</property>
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Load Flow Analyser</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center</property>
+    <property name="icon">../images/loadflow.png</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkBox" id="box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkMenuBar" id="menu">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkMenuItem" id="load">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Load</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="bus5">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">IEEE 5 Bus System</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="bus14">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">IEEE 14 Bus System</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="data">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Data</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="busfeed">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Bus Feed</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="linefeed">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Line Feed</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="ybus">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">YBus</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="options">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Options</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="config">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Configure</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="results">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Results</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="busresult">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Bus V,Q Profile</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="lineflow">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Line Power Flows</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="more">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">More</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="about">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">About</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="license">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">License</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFixed" id="fixed">
+            <property name="width_request">670</property>
+            <property name="height_request">360</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_bottom">1</property>
+            <child>
+              <object class="GtkImage" id="imgBackground">
+                <property name="width_request">100</property>
+                <property name="height_request">80</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixbuf">../images/bg.png</property>
+                <property name="icon_size">6</property>
+              </object>
+              <packing>
+                <property name="x">340</property>
+                <property name="y">15</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblStatus">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Status:</property>
+              </object>
+              <packing>
+                <property name="x">340</property>
+                <property name="y">325</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btnBeginLoadFlow">
+                <property name="label" translatable="yes">Begin Load Flow</property>
+                <property name="width_request">250</property>
+                <property name="height_request">35</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="x">15</property>
+                <property name="y">235</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btnValidate">
+                <property name="label" translatable="yes">Validate Data</property>
+                <property name="width_request">250</property>
+                <property name="height_request">35</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="x">15</property>
+                <property name="y">190</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="imgNetworkFile">
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-yes</property>
+              </object>
+              <packing>
+                <property name="x">340</property>
+                <property name="y">210</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblNetworkFile">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">No Line Feed Added</property>
+              </object>
+              <packing>
+                <property name="x">370</property>
+                <property name="y">210</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblBusFile">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">No Bus Feed Added</property>
+              </object>
+              <packing>
+                <property name="x">370</property>
+                <property name="y">250</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="imgBusFile">
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-yes</property>
+              </object>
+              <packing>
+                <property name="x">340</property>
+                <property name="y">250</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btnRemoveNetwork">
+                <property name="height_request">35</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <child>
+                  <object class="GtkLabel" id="lblRemoveNetwork">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Remove</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="x">570</property>
+                <property name="y">200</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFileChooserButton" id="fileNetwork">
+                <property name="width_request">250</property>
+                <property name="height_request">35</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="create_folders">False</property>
+                <property name="title" translatable="yes"/>
+              </object>
+              <packing>
+                <property name="x">15</property>
+                <property name="y">45</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFileChooserButton" id="fileBus">
+                <property name="width_request">250</property>
+                <property name="height_request">35</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="create_folders">False</property>
+                <property name="title" translatable="yes"/>
+              </object>
+              <packing>
+                <property name="x">15</property>
+                <property name="y">120</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblBus">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Select Bus Feed File</property>
+              </object>
+              <packing>
+                <property name="x">15</property>
+                <property name="y">95</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblNetwork">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Select Line Feed File</property>
+              </object>
+              <packing>
+                <property name="x">15</property>
+                <property name="y">20</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btnRemoveBus">
+                <property name="height_request">35</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <child>
+                  <object class="GtkLabel" id="lblRemoveBus">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Remove</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="x">570</property>
+                <property name="y">240</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btnViewResults">
+                <property name="label" translatable="yes">View Results</property>
+                <property name="width_request">250</property>
+                <property name="height_request">35</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="x">15</property>
+                <property name="y">300</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblStatusMsg">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Ready</property>
+              </object>
+              <packing>
+                <property name="x">390</property>
+                <property name="y">325</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="imgNoNetworkFile">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-no</property>
+              </object>
+              <packing>
+                <property name="x">340</property>
+                <property name="y">210</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="imgNoBusFile">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-no</property>
+              </object>
+              <packing>
+                <property name="x">340</property>
+                <property name="y">250</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="lblValidationStatus">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Data Not Validated</property>
+              </object>
+              <packing>
+                <property name="x">370</property>
+                <property name="y">290</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="imgNoValidated">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-no</property>
+              </object>
+              <packing>
+                <property name="x">340</property>
+                <property name="y">290</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="imgYesValidated">
+                <property name="can_focus">False</property>
+                <property name="stock">gtk-yes</property>
+              </object>
+              <packing>
+                <property name="x">340</property>
+                <property name="y">290</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="infonw">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <child>
+                  <object class="GtkImage" id="img1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="pixbuf">../images/Help.png</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="x">275</property>
+                <property name="y">45</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="infobus">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <child>
+                  <object class="GtkImage" id="img2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="pixbuf">../images/Help.png</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="x">275</property>
+                <property name="y">120</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

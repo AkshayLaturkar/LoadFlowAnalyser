@@ -1,0 +1,84 @@
+#!/bin/sh
+
+if ! hash python; then
+    echo "python is not installed"
+    exit 1
+fi
+
+ver=$(python -V 2>&1 | sed 's/.* \([0-9]\).\([0-9]\).*/\1\2/')
+if [ "$ver" -lt "27" ]; then
+    echo "This script requires python 2.7 or greater"
+    exit 1
+fi
+
+CURR_REL_DIR="`dirname \"$0\"`"
+CURR_DIR="`cd \"$CURR_REL_DIR\" && pwd`"
+INSTALL_DIR="/usr/local";
+echo Current Directory : \"${CURR_DIR}\"
+
+echo "Starting Dependency Check"
+echo "`python \"${CURR_DIR}/dependency.py\"`"
+RES="`python \"${CURR_DIR}/dependency.py\"`"
+echo "Dependency check completed"
+
+RES="`echo \"${RES}\" | grep -o 'not found' -c`"
+
+if [ "$RES" -le "0" ]
+then
+    echo "Success. All dependencies are available"
+    
+    if [ -d "${INSTALL_DIR}/LoadFlowAnalyser" ]
+    then
+	echo "Directory exists"
+	read -p "Do you want to override the directory (y/n) : " ANS
+	if [ "$ANS" = 'y' ] || [ "$ANS" = 'Y' ] || [ "$ANS" = 'yes' ]
+	then
+	    echo "Overriding directory"
+	else
+	    echo "Cancelling the installation"
+	    exit
+	fi
+    else
+	echo "Directory doesn't exists"
+	echo "Creating directory \"${INSTALL_DIR}/LoadFlowAnalyser\""
+	echo "`sudo mkdir \"${INSTALL_DIR}/LoadFlowAnalyser\"`"
+    fi
+
+    echo "Copying files...."
+    echo "~~~~~~~~~~~~~~~~~"
+    echo "Copying examples folder to \"${INSTALL_DIR}/LoadFlowAnalyser/\""
+    echo "`sudo cp -r \"${CURR_DIR}/examples\" \"${INSTALL_DIR}/LoadFlowAnalyser/\"`" > /dev/null
+    echo "Copying src folder to \"${INSTALL_DIR}/LoadFlowAnalyser/\""
+    echo "`sudo cp -r \"${CURR_DIR}/src\" \"${INSTALL_DIR}/LoadFlowAnalyser/\"`" > /dev/null
+    echo "`sudo mv \"${INSTALL_DIR}/LoadFlowAnalyser/src/app.glade\" \"${INSTALL_DIR}/LoadFlowAnalyser/src/app.xml\"`" > /dev/null
+    echo "Copying images folder to \"${INSTALL_DIR}/LoadFlowAnalyser/\""
+    echo "`sudo cp -r \"${CURR_DIR}/images\" \"${INSTALL_DIR}/LoadFlowAnalyser/\"`" > /dev/null
+    echo "Copying license to \"${INSTALL_DIR}/LoadFlowAnalyser/\""
+    echo "`sudo cp \"${CURR_DIR}/license.txt\" \"${INSTALL_DIR}/LoadFlowAnalyser/\"`" > /dev/null
+
+    if [ ! -d "${INSTALL_DIR}/LoadFlowAnalyser/bin" ]
+    then
+	echo "Creating bin directory"
+	echo "`sudo mkdir \"${INSTALL_DIR}/LoadFlowAnalyser/bin\"`" > /dev/null
+    fi
+    echo "Copying desktop entry to \"${INSTALL_DIR}/LoadFlowAnalyser/\""
+    echo "`sudo cp \"${CURR_DIR}/bin/loadflow.desktop\" \"${INSTALL_DIR}/LoadFlowAnalyser/bin/\"`" > /dev/null
+    echo "creating an executable script inside bin"
+    echo "`echo '#!/bin/sh' | sudo tee \"${INSTALL_DIR}/LoadFlowAnalyser/bin/loadflow\"`" > /dev/null
+    echo "`echo \"export LoadFlowPath='${INSTALL_DIR}/LoadFlowAnalyser' \" | sudo tee -a \"${INSTALL_DIR}/LoadFlowAnalyser/bin/loadflow\"`" > /dev/null
+    echo "`echo \"python '${INSTALL_DIR}/LoadFlowAnalyser/src/app.py' \" | sudo tee -a \"${INSTALL_DIR}/LoadFlowAnalyser/bin/loadflow\"`" > /dev/null
+    echo "`sudo chmod +x \"${INSTALL_DIR}/LoadFlowAnalyser/bin/loadflow\" `" > /dev/null
+    if [ -L "/usr/local/bin/loadflow" ]
+    then
+	echo "`sudo rm /usr/local/bin/loadflow`"
+    fi
+    echo "Creating symbolic link in /usr/local/bin"
+    echo "`sudo ln -s \"${INSTALL_DIR}/LoadFlowAnalyser/bin/loadflow\" /usr/local/bin `" > /dev/null
+    echo "Creating desktop entry"
+    echo "`sudo cp \"${INSTALL_DIR}/LoadFlowAnalyser/images/loadflow.png\" /usr/share/icons/ `" > /dev/null
+    echo "`sudo cp \"${INSTALL_DIR}/LoadFlowAnalyser/bin/loadflow.desktop\" /usr/share/applications/ `" > /dev/null
+    echo "Installation finished"
+
+else
+    echo "Failure. Some dependencies are missing"
+fi

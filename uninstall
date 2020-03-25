@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "Uninstalling Load Flow Analyser...."
+sudo rm -rf /usr/local/LoadFlowAnalyser
+sudo rm -f /usr/local/bin/loadflow
+sudo rm -f /usr/share/icons/loadflow.png
+sudo rm -r /usr/share/applications/loadflow.desktop
+echo "Finished"
