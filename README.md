@@ -6,10 +6,10 @@ Copyright (C) 2020 Akshay Arvind Laturkar
 
 Installation (Linux based system):
 ----------------------------------
-1) Make sure python is installed. Prefarably python 2.7 or more.
+1) Make sure python is installed. Preferably python 2.7 or more.
 2) Install pip.
 3) Install following python packages numpy,pandas,xlrd.
-4) Other dependencies like gi,os,collections,signal are used but mostly 
+4) Other dependencies like gi,os,collections,signal,os,sys,shutil are used but mostly 
    these will be installed along side pip and python. If not installed,
    please install before installing this application.
 5) Once above packages have been installed. Open terminal and run
