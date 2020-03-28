@@ -34,25 +34,29 @@ then
 	if [ "$ANS" = 'y' ] || [ "$ANS" = 'Y' ] || [ "$ANS" = 'yes' ]
 	then
 	    echo "Overriding directory"
+	    echo "`sudo rm -rf \"${INSTALL_DIR}/LoadFlowAnalyser\"`"
 	else
 	    echo "Cancelling the installation"
 	    exit
 	fi
-    else
-	echo "Directory doesn't exists"
-	echo "Creating directory \"${INSTALL_DIR}/LoadFlowAnalyser\""
-	echo "`sudo mkdir \"${INSTALL_DIR}/LoadFlowAnalyser\"`"
     fi
+
+    echo "Creating directory \"${INSTALL_DIR}/LoadFlowAnalyser\""
+    echo "`sudo mkdir \"${INSTALL_DIR}/LoadFlowAnalyser\"`"
+
 
     echo "Copying files...."
     echo "~~~~~~~~~~~~~~~~~"
     echo "Copying examples folder to \"${INSTALL_DIR}/LoadFlowAnalyser/\""
-    echo "`sudo cp -r \"${CURR_DIR}/examples\" \"${INSTALL_DIR}/LoadFlowAnalyser/\"`" > /dev/null
+    echo "`sudo mkdir \"${INSTALL_DIR}/LoadFlowAnalyser/examples\"`" > /dev/null
+    echo "`sudo cp -r \"${CURR_DIR}/examples/\" \"${INSTALL_DIR}/LoadFlowAnalyser/\"`" > /dev/null
     echo "Copying src folder to \"${INSTALL_DIR}/LoadFlowAnalyser/\""
-    echo "`sudo cp -r \"${CURR_DIR}/src\" \"${INSTALL_DIR}/LoadFlowAnalyser/\"`" > /dev/null
+    echo "`sudo mkdir \"${INSTALL_DIR}/LoadFlowAnalyser/src\"`" > /dev/null
+    echo "`sudo cp -r \"${CURR_DIR}/src/\" \"${INSTALL_DIR}/LoadFlowAnalyser/\"`" > /dev/null
     echo "`sudo mv \"${INSTALL_DIR}/LoadFlowAnalyser/src/app.glade\" \"${INSTALL_DIR}/LoadFlowAnalyser/src/app.xml\"`" > /dev/null
     echo "Copying images folder to \"${INSTALL_DIR}/LoadFlowAnalyser/\""
-    echo "`sudo cp -r \"${CURR_DIR}/images\" \"${INSTALL_DIR}/LoadFlowAnalyser/\"`" > /dev/null
+    echo "`sudo mkdir \"${INSTALL_DIR}/LoadFlowAnalyser/images\"`" > /dev/null
+    echo "`sudo cp -r \"${CURR_DIR}/images/\" \"${INSTALL_DIR}/LoadFlowAnalyser/\"`" > /dev/null
     echo "Copying license to \"${INSTALL_DIR}/LoadFlowAnalyser/\""
     echo "`sudo cp \"${CURR_DIR}/license.txt\" \"${INSTALL_DIR}/LoadFlowAnalyser/\"`" > /dev/null
 
