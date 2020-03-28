@@ -101,7 +101,7 @@ class LoadFlowApp:
             self.widgets['bgimg'] = self.builder.get_object('imgBackground');
             self.widgets['imgnwinfo'] = self.builder.get_object('img1');
             self.widgets['imgbusinfo'] = self.builder.get_object('img2');
-
+            self.widgets['visualize'] = self.builder.get_object('visualize');
 
             # App Variables
             self.nwdata = None;
@@ -162,6 +162,7 @@ class LoadFlowApp:
             self.widgets['license'].connect('activate',self.on_view_license);
             self.widgets['infonetwork'].connect('clicked',self.on_infonw_clicked);
             self.widgets['infobus'].connect('clicked',self.on_infobus_clicked);
+            self.widgets['visualize'].connect('activate',self.DisplayGraph);
 
             # Set initial states of widgets
             self.widgets['status'].set_text('Ready');
@@ -1025,6 +1026,7 @@ class LoadFlowApp:
                 button.props.margin_bottom = 20;
                 self.tempdata = data;
                 box.add(button);
+                self.graphPlot();
 
             dialog.show_all();
         except Exception as err:
@@ -1504,6 +1506,53 @@ class LoadFlowApp:
             Gtk.main();
         except Exception as err:
             self.msglog(err);
+
+    '''
+    Draw network as graph
+    '''
+    def DisplayGraph(self,widget):
+
+        from graphviz import Digraph;
+        s = Digraph(engine='dot',node_attr={'style': 'filled'});
+        s.attr('node', shape='circle', fixedsize='true',width='1.5');
+        s.attr(rankdir='LR');
+
+        for i in range(0,len(self.rbusdata)):
+            busno = str(self.rbusdata['Bus No'][i])
+            p='\n'+'Pg = '+"{0:.3f}".format(self.rbusdata['Pg'][i])+"\n"+"Pd = "+"{0:.3f}".format(self.rbusdata['Pd'][i]);
+            if self.busdata['Bus Type'][i] == 'PQ':
+                if abs(self.rbusdata['Pd'][i]) < 1e-4:
+                    color = '#BEBEBE';
+                else:
+                    color = '#FF7900';
+            elif self.busdata['Bus Type'][i] == 'Slack':
+                color = '#E0B0FF';
+            else:
+                if abs(self.rbusdata['Pg'][i]) < 1e-4:
+                    color = '#71BC78';
+                else:
+                    color = '#0080FF';
+            s.node(busno,label='Bus : '+busno+p,fillcolor=color);
+
+        for i in range(0,len(self.rnwdata)):
+            frombus = str(self.rnwdata['From Bus'][i]);
+            tobus = str(self.rnwdata['To Bus'][i]);
+            p = "{0:.3f}".format(self.rnwdata['Pavg'][i]);
+            if float(p) > 0:
+                s.edge(frombus,tobus,label=p);
+            else:
+                s.edge(tobus,frombus,label=str(abs(float(p))));
+
+        with s.subgraph(name='Details') as b:
+            s.attr('node', shape='rectangle', fixedsize='true',width='3');
+            b.node('Dummy',label='Dummy Bus',fillcolor='#BEBEBE');
+            b.node('PQ',label='Load PQ Bus',fillcolor='#FF7900');
+            b.node('V Bus',label='Voltage Controlled Bus',fillcolor='#71BC78');
+            b.node('PV',label='Generator PV Bus',fillcolor='#0080FF');
+            b.node('Slack',label='Generator Slack Bus',fillcolor='#E0B0FF');
+
+        import tempfile;
+        s.view(tempfile.mktemp('.gv'));
 
     '''
     Error Message dialog window
