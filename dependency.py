@@ -58,3 +58,10 @@ try:
     print("python sys package found");
 except:
     print("python sys package not found");
+
+try:
+    import graphviz;
+    print("python graphviz package found");
+except:
+    print("python graphviz package not found");
+

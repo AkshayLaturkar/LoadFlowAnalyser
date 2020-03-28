@@ -1,14 +1,14 @@
 #LoadFLowAnalyser
 A simple python gtk app to perform load flow analysis of a power system.
 
-Copyright (C) 2020 Akshay Arvind Laturkar	
+Copyright (C) 2020 Akshay Arvind Laturkar
 
 
 Installation (Linux based system):
 ----------------------------------
-1) Make sure python is installed. Preferably python 2.7 or more.
+1) Make sure python is installed. Preferably python 2.7 or higher.
 2) Install pip.
-3) Install following python packages numpy,pandas,xlrd.
+3) Install following python packages numpy,pandas,xlrd,graphviz.
 4) Other dependencies like gi,os,collections,signal,os,sys,shutil are used but mostly 
    these will be installed along side pip and python. If not installed,
    please install before installing this application.
