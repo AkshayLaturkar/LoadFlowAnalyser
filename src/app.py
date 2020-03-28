@@ -1033,7 +1033,6 @@ class LoadFlowApp:
                 button.props.margin_bottom = 20;
                 self.tempdata = data;
                 box.add(button);
-                self.graphPlot();
 
             dialog.show_all();
         except Exception as err:
