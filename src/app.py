@@ -22,6 +22,13 @@ License along with this program.
 If not, see <https://www.gnu.org/licenses/>.
 '''
 
+'''
+File Version History
+V1.0.0 : March 25, 2020 By Akshay Arvind Laturkar
+V1.1.0 : March 28, 2020 By Akshay Arvind Laturkar
+         Added New Feature for visualizing network power flows
+'''
+
 
 import sys; 
 import gi;
@@ -1122,11 +1129,11 @@ class LoadFlowApp:
             grid.attach(label,0,2,1,1);
 
             label = Gtk.Label();
-            label.set_markup('Version : 1.0.0');
+            label.set_markup('Current App Version : 1.1.0');
             grid.attach(label,0,3,1,1);
 
             label = Gtk.Label();
-            label.set_markup('Date Published : 25 March 2020');
+            label.set_markup('Date Published : 28 March 2020');
             grid.attach(label,0,4,1,1);
 
             label = Gtk.Label();
@@ -1509,6 +1516,7 @@ class LoadFlowApp:
 
     '''
     Draw network as graph
+    Added New feature on March 28, 2020 - V 1.1.0
     '''
     def DisplayGraph(self,widget):
 

@@ -21,6 +21,13 @@ License along with this program.
 If not, see <https://www.gnu.org/licenses/>.
 '''
 
+'''
+File Version History
+V1.0.0 : March 25, 2020 By Akshay Arvind Laturkar
+V1.1.0 : March 28, 2020 By Akshay Arvind Laturkar
+         No updates to this file
+'''
+
 
 import numpy as np;
 from collections import Counter;
