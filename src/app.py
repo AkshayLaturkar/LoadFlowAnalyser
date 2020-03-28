@@ -27,6 +27,8 @@ File Version History
 V1.0.0 : March 25, 2020 By Akshay Arvind Laturkar
 V1.1.0 : March 28, 2020 By Akshay Arvind Laturkar
          Added New Feature for visualizing network power flows
+V1.1.1 : March 28, 2020 By Akshay Arvind Laturkar
+         Fixed a bug --> Removed development code from release
 '''
 
 
@@ -1128,7 +1130,7 @@ class LoadFlowApp:
             grid.attach(label,0,2,1,1);
 
             label = Gtk.Label();
-            label.set_markup('Current App Version : 1.1.0');
+            label.set_markup('Current App Version : 1.1.1');
             grid.attach(label,0,3,1,1);
 
             label = Gtk.Label();
