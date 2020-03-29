@@ -29,6 +29,9 @@ V1.1.0 : March 28, 2020 By Akshay Arvind Laturkar
          Added New Feature for visualizing network power flows
 V1.1.1 : March 28, 2020 By Akshay Arvind Laturkar
          Fixed a bug --> Removed development code from release
+V1.1.2 : Marxh 29, 2020 By Akshay Arvind Laturkar
+         Bug Fix, If redundant lines are present between buses, P was same
+         Bug Fix, When Bus order is changed, YBus was wrongly referenced (No changes in this file)
 '''
 
 
@@ -604,10 +607,13 @@ class LoadFlowApp:
             V = np.c_[V,Vmin,Vmax];
             BT = np.array(data['Bus Type']).reshape((self.buses,1));
             self.OriginalBT = BT.copy();
-            Line = np.array(self.nwdata[['Line No','From Bus','To Bus','B/2']]).reshape((len(self.nwdata),4));
+            Line = np.array(self.nwdata[['Line No','From Bus','To Bus','B/2','R','X']]).reshape((len(self.nwdata),6));
+
+            # Added BNo data as part of Bug Fix -V1.1.2
+            BNo = np.array(data['Bus No']).reshape((self.buses,1));
 
             # Call Load Flow Solver
-            lf = solver.LoadFlow(self.buses,P,Q,V,BT,self.YBus,self.MaxIter,self.VLimit,self.QLimit,Line);
+            lf = solver.LoadFlow(self.buses,P,Q,V,BT,self.YBus,self.MaxIter,self.VLimit,self.QLimit,Line,BNo);
 
             [rIter,rBT,rP,rQ,rV,rD,Pavg,Qavg,Ploss,Qloss] = lf.Solve();
             self.rbusdata = self.busdata.copy();
@@ -1130,11 +1136,11 @@ class LoadFlowApp:
             grid.attach(label,0,2,1,1);
 
             label = Gtk.Label();
-            label.set_markup('Current App Version : 1.1.1');
+            label.set_markup('Current App Version : 1.1.2');
             grid.attach(label,0,3,1,1);
 
             label = Gtk.Label();
-            label.set_markup('Date Published : 28 March 2020');
+            label.set_markup('Date Published : 29 March 2020');
             grid.attach(label,0,4,1,1);
 
             label = Gtk.Label();
